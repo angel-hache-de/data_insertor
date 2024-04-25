@@ -1,6 +1,7 @@
 package main
 
 import (
+	"data_inserter/config"
 	"data_inserter/store"
 	"fmt"
 )
@@ -10,7 +11,10 @@ const FILE_NAME = "data.xlsx"
 var actualStore store.IStore
 
 func main() {
-	// saveOneByOne()
+	envService := config.LoadENVService{}
+	envService.NewLoadENV()
+	actualStore = store.NewSqlServer()
+	saveOneByOne()
 	// saveOneMillion()
 	// saveOneMillionBy100k()
 	// saveOneMillionBy10k()
